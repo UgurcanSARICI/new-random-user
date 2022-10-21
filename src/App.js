@@ -14,7 +14,7 @@ const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
 
 function App() {
   const [userData, setUserData] = useState(null);
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState([]);
 
   const getRandomUser = async () => {
     await axios
@@ -30,11 +30,25 @@ function App() {
     getRandomUser();
   }, []);
 
-  //Get Info Section
-  const getInfo = (hover) => {};
-
-  // Get Info Section Done
-
+  // Get Info Section
+  const getInfo = (hover) => {
+    switch (hover) {
+      case "profile":
+        setUserInfo({
+          title: "My name is ",
+          info: userData.name.first,
+        });
+        break;
+      case "email":
+        setUserInfo({
+          title: "My email is",
+          info: userData.email,
+        });
+      default:
+        break;
+    }
+  };
+  // Get Info Section is Done
   return (
     <main>
       {userData && (
@@ -50,33 +64,63 @@ function App() {
                 alt="random user"
                 className="user-img"
               />
-              <p className="user-title">{userData.name.first}</p>
-              <p className="user-value"></p>
+              <p className="user-title">
+                {userInfo !== [] ? userInfo.title : "My name is"}
+              </p>
+              <p className="user-value">
+                {userInfo !== []
+                  ? userInfo.info
+                  : `${userData.name.first} ${userData.name.last}`}
+              </p>
               <div className="values-list">
-                <button className="icon" data-label="name">
+                <button
+                  className="icon"
+                  data-label="name"
+                  onMouseEnter={() => getInfo("profile")}
+                >
                   <img src={womanSvg} alt="user" id="iconImg" />
                 </button>
-                <button className="icon" data-label="email">
+                <button
+                  className="icon"
+                  data-label="email"
+                  onMouseEnter={() => getInfo("email")}
+                >
                   <img src={mailSvg} alt="mail" id="iconImg" />
                 </button>
-                <button className="icon" data-label="age">
+                <button
+                  className="icon"
+                  data-label="age"
+                  onMouseEnter={() => getInfo("age")}
+                >
                   <img src={womanAgeSvg} alt="age" id="iconImg" />
                 </button>
-                <button className="icon" data-label="street">
+                <button
+                  className="icon"
+                  data-label="street"
+                  onMouseEnter={() => getInfo("location")}
+                >
                   <img src={mapSvg} alt="map" id="iconImg" />
                 </button>
-                <button className="icon" data-label="phone">
+                <button
+                  className="icon"
+                  data-label="phone"
+                  onMouseEnter={() => getInfo("tel")}
+                >
                   <img src={phoneSvg} alt="phone" id="iconImg" />
                 </button>
-                <button className="icon" data-label="password">
+                <button
+                  className="icon"
+                  data-label="password"
+                  onMouseEnter={() => getInfo("password")}
+                >
                   <img src={padlockSvg} alt="lock" id="iconImg" />
                 </button>
               </div>
               <div className="btn-group">
                 <button
-                  onClick={() => getRandomUser()}
                   className="btn"
                   type="button"
+                  onClick={() => getRandomUser()}
                 >
                   new user
                 </button>
