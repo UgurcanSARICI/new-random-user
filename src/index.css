@@ -111,9 +111,10 @@ p {
 .block {
   min-height: 40vh;
 }
-.bcg-orange {
+.bcg-logo {
   background: var(--clr-primary-3);
   text-align: center;
+  margin-bottom: 5rem;
 }
 
 .container {

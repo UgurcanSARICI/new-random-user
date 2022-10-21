@@ -100,7 +100,7 @@ function App() {
     <main>
       {userData && (
         <>
-          <div className="block bcg-orange">
+          <div className="block bcg-logo">
             <img src={us} alt="us" id="us" />
           </div>
           {/*  */}
