@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import mailSvg from "./assets/mail.svg";
+import manSvg from "./assets/man.svg";
 import womanSvg from "./assets/woman.svg";
+import manAgeSvg from "./assets/growing-up-man.svg";
 import womanAgeSvg from "./assets/growing-up-woman.svg";
 import mapSvg from "./assets/map.svg";
 import phoneSvg from "./assets/phone.svg";
@@ -22,6 +24,10 @@ function App() {
       .then((res) => {
         console.log(res.data.results[0]);
         setUserData(res.data.results[0]);
+        setUserInfo({
+          title: "My name is:",
+          info: `${res.data.results[0].name.first} ${res.data.results[0].name.last}`,
+        });
       })
       .catch((err) => console.log(err));
   };
@@ -30,13 +36,14 @@ function App() {
     getRandomUser();
   }, []);
 
-  // Get Info Section
+  //get info Section
+
   const getInfo = (hover) => {
     switch (hover) {
       case "profile":
         setUserInfo({
           title: "My name is ",
-          info: userData.name.first,
+          info: `${userData.name.first} ${userData.name.last}`,
         });
         break;
       case "email":
@@ -44,11 +51,38 @@ function App() {
           title: "My email is",
           info: userData.email,
         });
+        break;
+      case "age":
+        setUserInfo({
+          title: "My age is",
+          info: userData.dob.age,
+        });
+        break;
+      case "location":
+        setUserInfo({
+          title: "My location is",
+          info: `${userData.location.city} - ${userData.location.country}`,
+        });
+        break;
+      case "tel":
+        setUserInfo({
+          title: "My phone number is",
+          info: userData.phone,
+        });
+        break;
+      case "password":
+        setUserInfo({
+          title: "My password is",
+          info: userData.login.password,
+        });
+        break;
       default:
         break;
     }
   };
-  // Get Info Section is Done
+
+  //get info section is done
+
   return (
     <main>
       {userData && (
@@ -56,7 +90,6 @@ function App() {
           <div className="block bcg-orange">
             <img src={cwSvg} alt="cw" id="cw" />
           </div>
-          {/*  */}
           <div className="block">
             <div className="container">
               <img
