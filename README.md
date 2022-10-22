@@ -1,5 +1,5 @@
 
-# Project : Weather App
+# Project : Random User App
 
 ## Table of contents
 
@@ -13,11 +13,11 @@
 
 
 ## The challenge
-Project aims to create a Language Cards app with React and Bootstrap
+Project aims to create a Random User  App with React.
 
 ## Problem Statement
 
-- Develop a language cards app to improve your REACT knowledge and practice with Bootstrap
+- Develop a random user application using https://randomuser.me/api/. Use one button to bring in a new user and another button to add a user to the list
 <hr>
 
 
@@ -25,7 +25,7 @@ Project aims to create a Language Cards app with React and Bootstrap
 ## Project Skeleton 
 
 ```
-Random User App 2 (folder)
+Random User App  (folder)
 |
 |----readme.md         
 │ 
